@@ -105,6 +105,9 @@ makeuserlib libm
 (
   cd ljsyscall
   ./examples/cbuild.sh
+  # builds too much tidy up
+  rm obj/syscall.osx.* obj/syscall.linux.* obj/syscall.rump.*
+  ar cr obj/libtest.a obj/cstub.o obj/syscall*.o obj/jit*.o obj/test*.o obj/include*.o
 )
 
 # we need dl.c from ljsyscall examples, its probably in wrong repo
