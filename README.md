@@ -13,8 +13,7 @@ You need Xen headers installed in /usr/include/xen.
 Currently only 32 bit builds will work. Adding support for 64 bit builds
 requires adding allocation hint support to the mmap implementation.
 
-To build, check the location of your libgcc files and adjust Makefile
-(sorry, this needs automating!) then run `./buildxen.sh`. Then run
+To build run `./buildxen.sh`. Then check the domain_config file is suitable and run
 `xl create -c domain_config`. To run on Amazon you will need to build a
 stub as you cannot directly create a AKI image you have to run pvgrub - 
 not tested yet will add a script.
