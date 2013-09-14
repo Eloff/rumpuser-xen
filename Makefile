@@ -43,7 +43,7 @@ LIBS_NET+= -lrumpnet_net -lrumpnet
 # Define some default flags for linking.
 LDLIBS_FS = --whole-archive ${LIBS_FS} ${LIBS_NET} -lrump --no-whole-archive
 LDLIBS = -Lrump/lib ${LDLIBS_FS} -lc
-LDLIBS += ljsyscall/obj/libtest.a -Lluajit-2.0/src -lluajit -L/usr/lib/gcc/i686-redhat-linux/4.4.7 -l gcc_eh -lm -lc
+LDLIBS += ljsyscall/obj/libtest.a -Lluajit-2.0/src -lluajit -L${LIBGCCDIR} -l gcc_eh -lm -lc
 
 APP_LDLIBS := 
 LDARCHLIB := -L$(OBJ_DIR)/xen/$(TARGET_ARCH_DIR) -l$(ARCH_LIB_NAME)

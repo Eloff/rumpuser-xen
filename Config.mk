@@ -11,6 +11,8 @@ XEN_TARGET_ARCH     ?= $(XEN_COMPILE_ARCH)
 XEN_INTERFACE_VERSION := 0x00030205
 export XEN_INTERFACE_VERSION
 
+LIBGCCDIR=$(shell ${CC} -print-libgcc-file-name | xargs dirname)
+
 OBJ_DIR= $(MINI-OS_ROOT)/obj
 
 # Try to find out the architecture family TARGET_ARCH_FAM.
