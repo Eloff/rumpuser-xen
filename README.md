@@ -1,4 +1,24 @@
-Rump kernel hypercalls for the Xen hypervisor [![Build Status](https://travis-ci.org/anttikantee/rumpuser-xen.png?branch=master)](https://travis-ci.org/anttikantee/rumpuser-xen)
+LuaJIT and ljsyscall build for Xen
+==================================
+
+This is a modified build of the repo it is forked form to add a build of
+LuaJIT and ljsyscall that runs natively under Xen. By default it just runs
+the ljsyscall test suite.
+
+This is just a proof of concept. The build system needs cleaning up with
+a gcc spec file and wrapper and so on to make the build simpler.
+
+You need Xen headers installed in /usr/include/xen.
+
+Currently only 32 bit builds will work. Adding support for 64 bit builds
+requires adding allocation hint support to the mmap implementation.
+
+LuaJIT is a high performance implementation of Lua see http://luajit.org/
+
+ljsyscall is a system programming interface for LuaJIT see https://github.com/justincormack/ljsyscall
+
+
+Rump kernel hypercalls for the Xen hypervisor [![Build Status](https://travis-ci.org/justincormack/rumpuser-xen.png?branch=master)](https://travis-ci.org/justincormack/rumpuser-xen)
 =============================================
 
 This repository contains code that implements the rump kernel hypercall
