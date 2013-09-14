@@ -31,15 +31,19 @@ OBJCOPY=objcopy
 include minios.mk
 
 CFLAGS += -Irump/include -nostdinc
+CFLAGS += -Iluajit-2.0/src
 CFLAGS += -DVIRTIF_BASE=xenif -I$(MINI-OS_ROOT)
 
 LIBS_FS = -lrumpfs_ffs -lrumpdev_disk -lrumpdev -lrumpvfs
+LIBS_FS+= -lrumpkern_tty -lrumpfs_tmpfs -lrumpfs_kernfs -lrumpfs_ptyfs
 LIBS_NET = -lrumpnet_config -lrumpdev_bpf -lrumpnet_xenif -lrumpnet_netinet
+LIBS_NET+= -lrumpnet_local 
 LIBS_NET+= -lrumpnet_net -lrumpnet
 
 # Define some default flags for linking.
 LDLIBS_FS = --whole-archive ${LIBS_FS} ${LIBS_NET} -lrump --no-whole-archive
 LDLIBS = -Lrump/lib ${LDLIBS_FS} -lc
+LDLIBS += ljsyscall/obj/libtest.a -Lluajit-2.0/src -lluajit -L/usr/lib/gcc/i686-redhat-linux/4.4.7 -l gcc_eh -lm -lc
 
 APP_LDLIBS := 
 LDARCHLIB := -L$(OBJ_DIR)/xen/$(TARGET_ARCH_DIR) -l$(ARCH_LIB_NAME)
@@ -76,7 +80,8 @@ src-y += rumphyper_net.c
 src-y += rumphyper_synch.c
 src-y += rumphyper_stubs.c
 
-src-y += rumpkern_demo.c
+#src-y += rumpkern_demo.c
+src-y += lua.c ljsyscall/examples/dl.c
 
 src-$(CONFIG_XENBUS) += xen/xenbus/xenbus.c
 
@@ -87,8 +92,8 @@ src-y += xen/console/xenbus.c
 # The common mini-os objects to build.
 APP_OBJS :=
 OBJS := $(patsubst %.c,$(OBJ_DIR)/%.o,$(src-y))
-OBJS+= httpd/bozohttpd.o httpd/main.o httpd/ssl-bozo.o httpd/content-bozo.o
-OBJS+= httpd/dir-index-bozo.o
+#OBJS+= httpd/bozohttpd.o httpd/main.o httpd/ssl-bozo.o httpd/content-bozo.o
+#OBJS+= httpd/dir-index-bozo.o
 
 .PHONY: default
 default: objs $(TARGET)
