@@ -95,8 +95,17 @@ makeuserlib libm
 
 [ ! -f img/test.ffs ] && cp img/test_clean.ffs img/test.ffs
 
-# build httpd objects
-( cd httpd && make -f Makefile.boot )
+# build LuaJIT
+(
+  cd luajit-2.0/src
+  make  HOST_CC=gcc  TARGET_CFLAGS='-DMAP_32BIT=0 -U__linux__ -D__NetBSD__ -nostdinc -I../../rump/include' TARGET_LDFLAGS='-D__NetBSD__ -nostdinc -I../../rump/include' TARGET_SYS=BSD libluajit.a
+)
+
+# build ljsyscall
+(
+  cd ljsyscall
+  ./examples/cbuild.sh
+)
 
 # build the domU image
 make
