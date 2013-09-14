@@ -4,3 +4,9 @@
 [submodule "nblibs"]
 	path = nblibs
 	url = https://github.com/anttikantee/xen-nblibc
+[submodule "ljsyscall"]
+	path = ljsyscall
+	url = https://github.com/justincormack/ljsyscall.git
+[submodule "luajit-2.0"]
+	path = luajit-2.0
+	url = http://luajit.org/git/luajit-2.0.git
