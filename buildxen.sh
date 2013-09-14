@@ -107,5 +107,8 @@ makeuserlib libm
   ./examples/cbuild.sh
 )
 
+# we need dl.c from ljsyscall examples, its probably in wrong repo
+cp ljsyscall/examples/dl.c .
+
 # build the domU image
 make

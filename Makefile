@@ -81,7 +81,7 @@ src-y += rumphyper_synch.c
 src-y += rumphyper_stubs.c
 
 #src-y += rumpkern_demo.c
-src-y += lua.c ljsyscall/examples/dl.c
+src-y += lua.c dl.c
 
 src-$(CONFIG_XENBUS) += xen/xenbus/xenbus.c
 
