@@ -1,4 +1,4 @@
-LuaJIT and ljsyscall build for Xen
+LuaJIT and ljsyscall build for Xen [![Build Status](https://travis-ci.org/justincormack/rumpuser-xen.png?branch=master)](https://travis-ci.org/justincormack/rumpuser-xen)
 ==================================
 
 This is a modified build of the repo it is forked form to add a build of
@@ -22,7 +22,7 @@ LuaJIT is a high performance implementation of Lua see http://luajit.org/
 
 ljsyscall is a system programming interface for LuaJIT see https://github.com/justincormack/ljsyscall
 
-Rump kernel hypercalls for the Xen hypervisor [![Build Status](https://travis-ci.org/justincormack/rumpuser-xen.png?branch=master)](https://travis-ci.org/justincormack/rumpuser-xen)
+Rump kernel hypercalls for the Xen hypervisor
 =============================================
 
 This repository contains code that implements the rump kernel hypercall
