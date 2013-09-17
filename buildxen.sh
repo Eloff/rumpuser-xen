@@ -95,14 +95,28 @@ makeuserlib libm
 
 [ ! -f img/test.ffs ] && cp img/test_clean.ffs img/test.ffs
 
-# build LuaJIT
+
+# build LuaJIT to link with
+echo '>> building LuaJIT for linking'
 (
   cd luajit-2.0/src
   make  HOST_CC=gcc  TARGET_CFLAGS='-DMAP_32BIT=0 -U__linux__ -D__NetBSD__ -nostdinc -I../../rump/include' TARGET_LDFLAGS='-D__NetBSD__ -nostdinc -I../../rump/include' TARGET_SYS=BSD libluajit.a
 )
 
-# build ljsyscall
+# build host LuaJIT
+echo '>> build and install host LuaJIT'
+INSTALL=${PWD}/ljsyscall/obj
+mkdir -p {$INSTALL}
 (
+  cd ljsyscall/include/luajit-2.0
+  cat Makefile | sed "s@/usr/local@${INSTALL}@" > Makefile-lj
+  make -f Makefile-lj install
+)
+
+# build ljsyscall
+echo '>> build ljsyscall'
+(
+  PATH=${INSTALL}/bin:${PATH}
   cd ljsyscall
   ./examples/cbuild.sh
   # builds too much tidy up
