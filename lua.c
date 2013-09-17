@@ -21,6 +21,8 @@ void lerror(lua_State *L, char *msg) {
 int main(void) {
   /* you can create interfaces from Lua, but ljsyscall doesn't have dhcp support yet, its on the TODO list so do here for now */
 
+  /* a real network interface is currently not required */
+#if 0
   int rv;
 
   if ((rv = rump_pub_netconfig_ifcreate("xenif0")) != 0) {
@@ -37,6 +39,7 @@ int main(void) {
     printf("getting IP for xenif0 via DHCP failed: %d\n", rv);
     return 1;
   }
+#endif
 
   lua_State *L;
 
